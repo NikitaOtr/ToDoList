@@ -24,7 +24,7 @@ const render = function() {
     todoList.textContent = '';
     todoCompleted.textContent = '';
 
-    todoListData.forEach(function(item) {
+    todoListData.forEach(function(item, index) {
         const li = getElement(item.value);
         li.querySelector('.todo-complete').addEventListener('click', function() {
             item.completed = !item.completed;
@@ -32,7 +32,7 @@ const render = function() {
         });
 
         li.querySelector('.todo-remove').addEventListener('click', function() {
-            todoListData = todoListData.filter(function(i) {return i.value !== item.value;});
+            delete(todoListData[index]);
             render();
         });
 
