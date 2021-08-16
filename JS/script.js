@@ -1,12 +1,12 @@
 'use strict';
 
+// ToDo Порядок добавления
 const todoControl = document.querySelector('.todo-control');
 const headerInput = document.querySelector('.header-input');
 const todoList = document.querySelector('.todo-list');
 const todoCompleted = document.querySelector('.todo-completed');
 
 let todoListData = JSON.parse(localStorage.getItem('todo')) ?? [];
-
 
 const getElement = function(value) {
     const elem = document.createElement('li');
@@ -30,20 +30,16 @@ const render = function() {
             item.completed = !item.completed;
             render();
         });
-
         li.querySelector('.todo-remove').addEventListener('click', function() {
-            delete(todoListData[index]);
+            todoListData.splice(index, 1);
             render();
         });
-
         if(item.completed === true) {
             todoCompleted.append(li);
         } else {
             todoList.append(li);
         }
-    });
-
-        
+    }); 
 };
 
 todoControl.addEventListener('submit', function (event) {
@@ -55,5 +51,5 @@ todoControl.addEventListener('submit', function (event) {
     }
 
 });
-
+console.log(todoListData);
 render();
